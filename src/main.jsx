@@ -21,6 +21,8 @@ const router = createBrowserRouter([
     },
 ]);
 
+export const fakeDbUrl = "https://fake-db-suppliers.vercel.app";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <RouterProvider router={router} />

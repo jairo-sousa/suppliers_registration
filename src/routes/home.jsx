@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Card, Input, Typography } from "antd";
 
 import { fakeDbUrl } from "../main";
+import { SearchOutlined } from "@ant-design/icons";
 
 export default function Home() {
     const [suppliers, setSuppliers] = useState([]);
@@ -19,16 +21,28 @@ export default function Home() {
 
     useEffect(() => {
         getAllSuppliers();
-        console.log(suppliers);
     }, []);
 
     return (
-        <div>
-            <h1>Home</h1>
-            <div>
-                <a href={`/`}>HOME</a>
-                <a href={`/suppliers`}>SUPPLIERS</a>
+        <>
+            <div className="flex-col" id="layout">
+                <header className="flex-col" id="header">
+                    <Typography.Title level={1} id="page-title">
+                        REGISTRO DE FORNECEDORES
+                    </Typography.Title>
+
+                    <div className="divider">
+                        <SearchOutlined />
+                        <Input
+                            id="searchBar"
+                            placeholder="Digite para pesquisar..."
+                            allowClear
+                            variant="borderless"
+                        />
+                    </div>
+                </header>
+                <div>CARD</div>
             </div>
-        </div>
+        </>
     );
 }

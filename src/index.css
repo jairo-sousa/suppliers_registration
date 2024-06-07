@@ -6,7 +6,7 @@
 
     font-family: "Inter";
     font-size: 24px;
-    color: #e6f3fe;
+    color: #97a5ce;
 }
 
 body {
@@ -21,4 +21,63 @@ body {
 #root {
     width: 100%;
     height: 100%;
+
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.divider {
+    display: flex;
+    border-bottom: 1px solid #97a5ce;
+}
+
+/* HOME */
+#layout {
+    padding: 0 11vw;
+    gap: 10%;
+    width: 100%;
+}
+
+#header {
+    margin-top: 9.5vh;
+    background: none;
+    padding: 0;
+    width: 100%;
+    gap: 7vh;
+}
+
+#page-title {
+    color: #68d373;
+    font-size: 32;
+    font-weight: 600;
+}
+
+#searchBar {
+    font-size: 32px;
+    width: 100%;
+}
+
+/* ANTD FIXES */
+::-webkit-input-placeholder {
+    color: #97a5ce !important;
+}
+
+:-moz-placeholder {
+    color: #97a5ce !important;
+}
+
+::-moz-placeholder {
+    color: #97a5ce !important;
+}
+
+:-ms-input-placeholder {
+    color: #97a5ce !important;
+}
+
+.ant-input-affix-wrapper {
+    color: #97a5ce !important;
 }

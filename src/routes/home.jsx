@@ -44,9 +44,12 @@ export default function Home() {
                     </div>
                 </header>
                 <div id="content">
-                    <Card className="supplierCard">
-                        <span className="cardTitle">Add supplier</span>
-                    </Card>
+                    <a href="/suppliers">
+                        <Card className="supplierCard">
+                            <span className="cardTitle">Add supplier</span>
+                        </Card>
+                    </a>
+
                     {suppliers &&
                         suppliers.map((supplier) => {
                             return (

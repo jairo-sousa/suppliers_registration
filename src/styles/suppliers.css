@@ -1,0 +1,35 @@
+#suppliersLayout {
+    width: 67%;
+    height: 87%;
+
+    padding: 70px 120px;
+    margin: auto;
+    position: relative;
+
+    background-color: #242e4c;
+
+    gap: 33px;
+}
+
+#supplierHeader {
+    border-radius: 8px;
+}
+
+#closeBtn {
+    position: absolute;
+    top: 70px;
+    right: 120px;
+
+    cursor: pointer;
+}
+
+#suppliersTitle {
+    font-size: 32px;
+
+    color: #e6f3fe;
+}
+
+#supplersSubTitle {
+    font-size: 24px;
+    font-weight: 500;
+}

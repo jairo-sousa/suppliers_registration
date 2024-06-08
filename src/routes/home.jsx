@@ -5,6 +5,8 @@ import { Card, Input, Typography } from "antd";
 import { fakeDbUrl } from "../main";
 import { SearchOutlined } from "@ant-design/icons";
 
+import "../styles/home.css";
+
 export default function Home() {
     const [suppliers, setSuppliers] = useState([]);
 

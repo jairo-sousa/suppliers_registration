@@ -8,7 +8,7 @@ import ErrorPage from "./routes/errorPage.jsx";
 
 import { ConfigProvider } from "antd";
 
-import "./index.css";
+import "./styles/index.css";
 
 const router = createBrowserRouter([
     {

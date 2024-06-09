@@ -9,6 +9,7 @@ import "../styles/home.css";
 
 export default function Home() {
     const [suppliers, setSuppliers] = useState();
+    const [searchText, setSearchText] = useState("");
 
     const getAllSuppliers = () => {
         axios
@@ -25,6 +26,14 @@ export default function Home() {
         getAllSuppliers();
     }, []);
 
+    const handleSearch = (value) => {
+        setSearchText(value);
+    };
+
+    const filteredSuppliers = suppliers?.filter((supplier) =>
+        supplier.nome.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return (
         <>
             <div className="flex-col" id="layout">
@@ -40,6 +49,7 @@ export default function Home() {
                             placeholder="Digite para pesquisar..."
                             allowClear
                             variant="borderless"
+                            onChange={(e) => handleSearch(e.target.value)}
                         />
                     </div>
                 </header>
@@ -50,8 +60,8 @@ export default function Home() {
                         </Card>
                     </a>
 
-                    {suppliers &&
-                        suppliers.map((supplier) => {
+                    {filteredSuppliers &&
+                        filteredSuppliers.map((supplier) => {
                             return (
                                 <a
                                     href={`/suppliers/${supplier.id}`}

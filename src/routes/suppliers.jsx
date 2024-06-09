@@ -2,7 +2,7 @@ import { Button, Input, Typography } from "antd";
 import "../styles/suppliers.css";
 import { CloseOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import { fakeDbUrl } from "../main";
@@ -18,27 +18,52 @@ const dataModel = {
     localização: "",
 };
 
-const handleSave = () => {
-    console.log("SAVE");
-};
-
-const handleEdit = () => {
-    console.log("EDIT");
-};
-
-const handleDelete = () => {
-    console.log("DELETE");
-};
-
 export default function Suppliers() {
     const { supplierCode } = useParams();
-    const [supplier, setSupplier] = useState();
+    const [dataToSend, setDataToSend] = useState({ ...dataModel });
+    const navigate = useNavigate();
 
     const getSupplier = () => {
         axios
             .get(`${fakeDbUrl}/suppliers/${supplierCode}`)
             .then((res) => {
-                setSupplier(res.data);
+                setDataToSend(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const postSupplier = (data) => {
+        axios
+            .post(`${fakeDbUrl}/suppliers`, data)
+            .then((res) => {
+                console.log(res);
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const updateSupplier = (data, id) => {
+        axios
+            .put(`${fakeDbUrl}/suppliers/${id}`, data)
+            .then((res) => {
+                console.log(res);
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const deleteSupplier = (data, id) => {
+        axios
+            .delete(`${fakeDbUrl}/suppliers/${id}`, data)
+            .then((res) => {
+                console.log(res);
+                navigate("/");
             })
             .catch((err) => {
                 console.log(err);
@@ -49,7 +74,26 @@ export default function Suppliers() {
         if (supplierCode) {
             getSupplier();
         }
-    }, []);
+    }, [supplierCode]);
+
+    const handleInputChange = (key, value) => {
+        setDataToSend((prevData) => ({
+            ...prevData,
+            [key]: value,
+        }));
+    };
+
+    const handleSave = () => {
+        postSupplier(dataToSend);
+    };
+
+    const handleEdit = () => {
+        updateSupplier(dataToSend, dataToSend.id);
+    };
+
+    const handleDelete = () => {
+        deleteSupplier(dataToSend, dataToSend.id);
+    };
 
     return (
         <div id="suppliersLayout" className="items-start flex-col">
@@ -69,41 +113,26 @@ export default function Suppliers() {
             </div>
 
             <form id="supplierForm" className="flex-col">
-                {supplier
-                    ? Object.keys(supplier).map((key) => {
-                          if (key !== "id") {
-                              return (
-                                  <fieldset key={key} className="flex-col">
-                                      <label htmlFor={`${key}`}>{key}</label>
-                                      <Input
-                                          id={`${key}`}
-                                          className="dataInput"
-                                          value={supplier[key]}
-                                          allowClear
-                                          variant="borderles"
-                                      />
-                                  </fieldset>
-                              );
-                          }
-                          return null;
-                      })
-                    : Object.keys(dataModel).map((key) => {
-                          if (key !== "id") {
-                              return (
-                                  <fieldset key={key} className="flex-col">
-                                      <label htmlFor={`${key}`}>{key}</label>
-                                      <Input
-                                          id={`${key}`}
-                                          className="dataInput"
-                                          placeholder={`Digite ${key}`}
-                                          allowClear
-                                          variant="borderles"
-                                      />
-                                  </fieldset>
-                              );
-                          }
-                          return null;
-                      })}
+                {Object.keys(dataToSend).map((key) => {
+                    if (key !== "id") {
+                        return (
+                            <fieldset key={key} className="flex-col">
+                                <label htmlFor={`${key}`}>{key}</label>
+                                <Input
+                                    id={`${key}`}
+                                    className="dataInput"
+                                    value={dataToSend[key]}
+                                    allowClear
+                                    variant="borderles"
+                                    onChange={(e) =>
+                                        handleInputChange(key, e.target.value)
+                                    }
+                                />
+                            </fieldset>
+                        );
+                    }
+                    return null;
+                })}
             </form>
 
             <div id="btns">
@@ -112,9 +141,7 @@ export default function Suppliers() {
                         type="primary"
                         danger
                         id="removeBtn"
-                        onClick={() => {
-                            handleDelete();
-                        }}
+                        onClick={handleDelete}
                     >
                         Remover
                     </Button>
@@ -123,7 +150,7 @@ export default function Suppliers() {
                     type="primary"
                     id="saveBtn"
                     onClick={() => {
-                        if (supplier) {
+                        if (supplierCode) {
                             handleEdit();
                         } else {
                             handleSave();

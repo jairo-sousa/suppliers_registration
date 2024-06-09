@@ -21,6 +21,11 @@ const router = createBrowserRouter([
         element: <Suppliers />,
         errorElement: <ErrorPage />,
     },
+    {
+        path: "/suppliers/:supplierCode",
+        element: <Suppliers />,
+        errorElement: <ErrorPage />,
+    },
 ]);
 
 export const fakeDbUrl = "https://fake-db-suppliers.vercel.app";

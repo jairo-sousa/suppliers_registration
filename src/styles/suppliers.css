@@ -1,23 +1,39 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+#suppliersLayout::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#suppliersLayout {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 #suppliersLayout {
     width: 67%;
-    height: 87%;
+    height: 88%;
 
-    padding: 70px 120px;
+    padding: 0 120px 0 120px;
     margin: auto;
     position: relative;
 
     background-color: #242e4c;
+    gap: 20px;
 
-    gap: 33px;
+    overflow: scroll;
+
+    border-top: 30px solid #242e4c;
+    border-bottom: 40px solid #242e4c;
 }
 
 #supplierHeader {
     border-radius: 8px;
+    gap: 15px;
 }
 
 #closeBtn {
     position: absolute;
-    top: 70px;
+    top: 20px;
     right: 120px;
 
     cursor: pointer;
@@ -29,7 +45,133 @@
     color: #e6f3fe;
 }
 
+h1.ant-typography {
+    margin: 0;
+}
+
 #supplersSubTitle {
     font-size: 24px;
     font-weight: 500;
+    margin-right: 40px;
+}
+
+/* FORM */
+#supplierForm {
+    gap: 20px;
+    width: 76%;
+    height: 527px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: auto;
+}
+
+fieldset {
+    gap: 10px;
+}
+
+label {
+    font-size: 16px;
+
+    color: #97a5ce;
+}
+
+/* BTNS */
+#btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ant-btn {
+    width: 222px;
+    height: 57px;
+}
+
+.ant-btn span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#removeBtn {
+    background-color: #d3656c;
+}
+
+#saveBtn {
+    background-color: #68d373;
+    margin-left: auto;
+}
+
+#removeBtn span {
+    color: #fff;
+}
+
+#saveBtn span {
+    color: #171f38;
+}
+
+/* ANTD FIXES */
+
+.ant-input-affix-wrapper {
+    font-size: 16px;
+
+    padding: 17px 11px;
+    max-width: 380px;
+    height: 57px;
+
+    font-weight: 400;
+    font-family: inter;
+
+    border: 1px solid #171f38;
+}
+
+@media (max-width: 1365px) {
+    #supplierForm {
+        height: auto;
+    }
+}
+
+@media (max-width: 1133px) {
+    #suppliersLayout {
+        width: 85%;
+        height: 95%;
+    }
+}
+
+@media (max-width: 842px) {
+    #suppliersLayout {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 710px) {
+    #btns {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .ant-btn {
+        width: 100%;
+        height: 57px;
+    }
+    #suppliersLayout {
+        width: 100%;
+
+        padding: 50px;
+    }
+}
+
+@media (max-width: 470px) {
+    #suppliersLayout {
+        width: 100%;
+
+        padding: 20px;
+    }
+    #supplierForm {
+        width: 100%;
+    }
+    #closeBtn {
+        position: static;
+    }
 }

@@ -108,13 +108,16 @@
     #content {
         grid-template-columns: repeat(auto-fit, minmax(35%, 1fr));
     }
-    .supplierCard {
-        max-width: 100%;
-    }
 }
 
 @media (max-width: 1130px) {
     #content {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .supplierCard {
+        max-width: 100%;
     }
 }

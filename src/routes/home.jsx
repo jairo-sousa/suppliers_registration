@@ -8,7 +8,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import "../styles/home.css";
 
 export default function Home() {
-    const [suppliers, setSuppliers] = useState([]);
+    const [suppliers, setSuppliers] = useState();
 
     const getAllSuppliers = () => {
         axios
@@ -53,35 +53,37 @@ export default function Home() {
                     {suppliers &&
                         suppliers.map((supplier) => {
                             return (
-                                <Card
-                                    className="supplierCard"
+                                <a
+                                    href={`/suppliers/${supplier.id}`}
                                     key={supplier.id}
                                 >
-                                    <div className="flex-col cardBody">
-                                        <div className="cardHeader flex-col">
-                                            <span className="cardTitle ">
-                                                {supplier.name}
-                                            </span>
+                                    <Card className="supplierCard">
+                                        <div className="flex-col cardBody">
+                                            <div className="cardHeader flex-col">
+                                                <span className="cardTitle ">
+                                                    {supplier.nome}
+                                                </span>
+                                                <span className="cardContent">
+                                                    {supplier.ramo}
+                                                </span>
+                                            </div>
+
                                             <span className="cardContent">
-                                                {supplier.branch}
+                                                {supplier.telefone}
+                                                <br />
+                                                {supplier.email}
+                                                <br />
+                                                {supplier.website}
+                                            </span>
+
+                                            <span className="cardContent">
+                                                {supplier.endereço}
+                                                <br />
+                                                {supplier.localização}
                                             </span>
                                         </div>
-
-                                        <span className="cardContent">
-                                            {supplier.phone}
-                                            <br />
-                                            {supplier.email}
-                                            <br />
-                                            {supplier.website}
-                                        </span>
-
-                                        <span className="cardContent">
-                                            {supplier.streetAddress}
-                                            <br />
-                                            {supplier.location}
-                                        </span>
-                                    </div>
-                                </Card>
+                                    </Card>
+                                </a>
                             );
                         })}
                 </div>

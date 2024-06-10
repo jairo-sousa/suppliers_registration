@@ -1,0 +1,11 @@
+#errorPage {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+
+    gap: 50px;
+}
+
+#errorPageTitle {
+    font-size: 32px;
+}

@@ -56,7 +56,9 @@ export default function Home() {
                 <div id="content">
                     <a href="/suppliers">
                         <Card className="supplierCard">
-                            <span className="cardTitle">Add supplier</span>
+                            <span className="cardTitle">
+                                Adicionar fornecedor
+                            </span>
                         </Card>
                     </a>
 

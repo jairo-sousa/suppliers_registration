@@ -112,7 +112,7 @@ label {
 
 /* ANTD FIXES */
 
-.ant-input-affix-wrapper {
+.ant-input-affix-wrapper.dataInput {
     font-size: 16px;
 
     padding: 17px 11px;
